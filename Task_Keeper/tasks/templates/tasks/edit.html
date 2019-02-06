@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="jumbotron col-md-6">
+        <form action="{% url 'tasks:edit' task.id %}" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="title">Title</label><br>
+                <input type="text" name="title" id="title" value="{{ task.title }}">
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label><br>
+                <textarea name="description" id="description">{{ task.description }}</textarea>
+            </div>
+            <label for="progress">Progress</label><br>
+            <select name="progress" id="progress">
+                <option value="{{ task.progress }}"></option>
+                <option value="to do">To do</option>
+                <option value="in progress">In Progress</option>
+                <option value="done">Done</option>
+            </select><br>
+            <label for="priority">Priority</label><br>
+            <select name="priority" id="priority">
+                <option value="{{ task.priority }}"></option>
+                <option value="low">Low</option>
+                <option value="middle">Middle</option>
+                <option value="high">High</option>
+            </select>
+            <br><br>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+    </div>
+{% endblock %}

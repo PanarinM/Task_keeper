@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>The task details:</h2>
+    <div class="jumbotron col-md-6">
+        <p><b>Title:</b> {{ task.title }}</p>
+        <p><b>Description:</b> {{ task.description }}</p>
+        <p><b>Priority:</b> {{ task.priority }}</p>
+        <p><b>Stage of completing:</b> {{ task.progress }}</p>
+        <p><b>Created on:</b> {{ task.created_at }}</p>
+        <a href="{% url 'tasks:edit' task.id %}">Edit task</a>&nbsp | &nbsp
+        <a href="{% url 'tasks:board' %}">Back to task list</a>&nbsp | &nbsp
+        <a href="{% url 'tasks:delete' task.id %}">Delete</a>
+    </div>
+{% endblock %}
