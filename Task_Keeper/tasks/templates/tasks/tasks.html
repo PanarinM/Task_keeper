@@ -1,61 +1,30 @@
 {% extends "base.html" %}
 {% block content %}
-
-    <div class="col-md-4">
-        <h1>To do</h1>
-        {% for task in tasks %}
-            {% if task.progress == 'to do' and task.title != ''%}
-                <div class="jumbotron">
-                    <a href="{% url 'tasks:details' task.id %}">
-                        <p><b>Title:</b> {{ task.title }}</p>
-                    </a>
-                    <p><b>Description:</b> {{ task.description }}</p>
-                    <p><b>Priority:</b> {{ task.priority }}</p>
-                    <p><b>Created on:</b> {{ task.created_at }}</p>
-                    <a href="{% url 'tasks:edit' task.id %}">Change</a>&nbsp | &nbsp
-                    <a href="{% url 'tasks:details' task.id %}">Details</a>&nbsp | &nbsp
-                    <a href="{% url 'tasks:progress' task.id %}">In Progress</a>
-                </div>
-            {% endif %}
+    {% if groups %}
+        {% for group in groups %}
+        <div class="col-md-4 group">
+            <h1>{{ group.group_name }}</h1>
+            <a href="{% url 'tasks:add_task' group.id %}">Add new task</a>&nbsp | &nbsp
+            <a href="{% url 'tasks:delete_group' group.id %}">Delete group</a>
+            {% for task in tasks %}
+                {% if task.progress == group.group_name and task.title != ''%}
+                    <div class="jumbotron">
+                        <a href="{% url 'tasks:details' task.id %}">
+                            <p><b>Title:</b> {{ task.title }}</p>
+                        </a>
+                        <p><b>Description:</b> {{ task.description }}</p>
+                        <p><b>Priority:</b> {{ task.priority }}</p>
+                        <p><b>Created on:</b> {{ task.created_at }}</p>
+                        <a href="{% url 'tasks:edit' task.id %}">Change</a>&nbsp | &nbsp
+                        <a href="{% url 'tasks:details' task.id %}">Details</a>&nbsp | &nbsp
+                        <a href="{% url 'tasks:move' task.id %}">Move to next</a>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
         {% endfor %}
-    </div>
-    <div class="col-md-4">
-        <h1>In Progress</h1>
-        {% for task in tasks %}
-            {% if task.progress == 'in progress' and task.title != '' %}
-                <div class="jumbotron">
-                    <a href="{% url 'tasks:details' task.id %}">
-                        <p><b>Title:</b> {{ task.title }}</p>
-                    </a>
-                    <p><b>Description:</b> {{ task.description }}</p>
-                    <p><b>Priority:</b> {{ task.priority }} </p>
-                    <a href="{% url 'tasks:edit' task.id %}">Change</a>&nbsp | &nbsp
-                    <a href="{% url 'tasks:details' task.id %}">Details</a>&nbsp | &nbsp
-                    <a href="{% url 'tasks:done' task.id %}">Done</a>
-                </div>
-            {% endif %}
-
-        {% endfor %}
-    </div>
-    <div class="col-md-4">
-        <h1>Done</h1>
-        {% for task in tasks %}
-           {% if task.progress == 'done' and task.title != '' %}
-            <div class="jumbotron">
-                <a href="{% url 'tasks:details' task.id %}">
-                    <p><b>Title:</b> {{ task.title }}</p>
-                </a>
-                <p><b>Description:</b> {{ task.description }}</p>
-                <p><b>Priority:</b> {{ task.priority }}</p>
-                <p><b>Created on:</b> {{ task.created_at }}</p>
-                <a href="{% url 'tasks:edit' task.id %}">Change</a>&nbsp | &nbsp
-                <a href="{% url 'tasks:details' task.id %}">Details</a>&nbsp | &nbsp
-                <a href="{% url 'tasks:delete' task.id %}">Delete</a>
-            </div>
-           {% endif %}
-        {% endfor %}
-    </div>
-
-
+    {% else %}
+        <h1>No posts yet!</h1>
+    {% endif %}
 
 {% endblock %}

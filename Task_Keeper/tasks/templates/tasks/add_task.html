@@ -2,7 +2,7 @@
 
 {% block content %}
     <div class="jumbotron col-md-6">
-        <form class="form" action="{% url 'tasks:add_task' %}" method="POST">
+        <form class="form" action="{% url 'tasks:add_task' id %}" method="POST">
             {% csrf_token %}
             <div class="form-group">
                 <label for="title">Title</label><br>
@@ -14,9 +14,10 @@
             </div>
             <label for="progress">Progress</label><br>
             <select name="progress">
-                <option value="to do">To do</option>
-                <option value="in progress">In Progress</option>
-                <option value="done">Done</option>
+                <option value="{{ current_group }}">{{ current_group }}</option>
+            {% for group in groups %}
+                <option value="{{ group.group_name }}">{{ group.group_name }}</option>
+            {% endfor %}
             </select>
             <br>
             <label for="priority">Priority</label><br>

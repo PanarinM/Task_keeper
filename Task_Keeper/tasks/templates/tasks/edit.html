@@ -13,10 +13,10 @@
             </div>
             <label for="progress">Progress</label><br>
             <select name="progress" id="progress">
-                <option value="{{ task.progress }}"></option>
-                <option value="to do">To do</option>
-                <option value="in progress">In Progress</option>
-                <option value="done">Done</option>
+                <option value="{{ task.progress }}">{{ task.progress }}</option>
+                {% for group in groups %}
+                <option value="{{ group.group_name }}">{{ group.group_name }}</option>
+            {% endfor %}
             </select><br>
             <label for="priority">Priority</label><br>
             <select name="priority" id="priority">
