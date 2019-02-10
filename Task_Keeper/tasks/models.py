@@ -9,12 +9,12 @@ User = get_user_model()
 
 
 class Group(models.Model):
-    # user = models.ForeignKey(User, related_name='tasks', on_delete='CASCADE')
+    user = models.ForeignKey(User, related_name='columns',on_delete='CASCADE')
     group_name = models.CharField(max_length=150, unique=True)
 
 
 class Task(models.Model):
-    # user = models.ForeignKey(User, related_name='tasks', on_delete='CASCADE')
+    user = models.ForeignKey(User, related_name='tasks', on_delete='CASCADE')
     title = models.CharField(max_length=150)
     description = models.TextField(max_length=300)
     progress = models.CharField(max_length=150)

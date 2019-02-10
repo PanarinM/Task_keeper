@@ -2,7 +2,7 @@
 {% block content %}
     {% if groups %}
         {% for group in groups %}
-        <div class="col-md-4 group">
+        <div class="col-lg-3 group">
             <h1>{{ group.group_name }}</h1>
             <a href="{% url 'tasks:add_task' group.id %}">Add new task</a>&nbsp | &nbsp
             <a href="{% url 'tasks:delete_group' group.id %}">Delete group</a>
@@ -24,7 +24,8 @@
         </div>
         {% endfor %}
     {% else %}
-        <h1>No posts yet!</h1>
+        <h1>No tasks or groups yet!</h1>
+        <h2><a href="{% url 'tasks:add_group' %}">Create your first group of tasks</a></h2>
     {% endif %}
 
 {% endblock %}

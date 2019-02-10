@@ -5,7 +5,7 @@
         <form class="form" action="{% url 'tasks:add_group' %}" method="POST">
             {% csrf_token %}
             <div class="form-group">
-                <label for="title">Title</label><br>
+                <label for="title">Enter title of new group:</label><br>
                 <input type="text" name="group_name" id="group_name">
             </div>
             <br><br>
