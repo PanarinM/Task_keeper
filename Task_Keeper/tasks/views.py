@@ -26,8 +26,8 @@ def add_group(request):
     user = request.user
     if request.method == 'POST':
         group_name = request.POST['group_name']
-        # group_order = request.POST['group_order']
-        group = Group(user=user, group_name=group_name) #, group_order=group_order)
+        group_order = request.POST['group_order']
+        group = Group(user=user, group_name=group_name, group_order=group_order)
         group.save()
         return HttpResponseRedirect('/tasks/board')
     else:
@@ -70,7 +70,7 @@ def delete_group(request, id):
 def tasks(request):
     user = request.user
     tasks_user = Task.objects.filter(user=user)
-    groups = Group.objects.filter(user=user)
+    groups = Group.objects.filter(user=user).order_by("group_order")
     context = {
         'tasks': tasks_user,
         'groups': groups
@@ -137,7 +137,7 @@ def edit(request, id):
 def index_plus(item, user):
     group_elem = Group.objects.filter(user=user)
     group_list = []
-    for group in Group.objects.filter(user=user):
+    for group in Group.objects.filter(user=user).order_by("group_order"):
         group_list.append(group.group_name)
     try:
         res = group_list[group_list.index(item) + 1]
@@ -166,4 +166,3 @@ def delete(request, id):
         return HttpResponseRedirect('/tasks/board')
     except Task.DoesNotExist:
         return HttpResponseRedirect('/tasks/board')
-

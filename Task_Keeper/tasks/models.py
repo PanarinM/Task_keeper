@@ -17,7 +17,7 @@ class User(auth.models.User, auth.models.PermissionsMixin):
 class Group(models.Model):
     user = models.ForeignKey(User2, related_name='columns', on_delete='CASCADE')
     group_name = models.CharField(max_length=150)
-    # group_order = models.IntegerField()
+    group_order = models.IntegerField()
 
 
 class Task(models.Model):
