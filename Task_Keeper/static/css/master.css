@@ -1,7 +1,35 @@
 .group{
-    position: relative;
-    border-right: 0.5px solid black;
-    border-bottom: 0.5px solid black;
+    border: 1px solid grey;
+    border-radius: 4px;
+    background: ghostwhite;
     margin: 10px;
-    margin-right: 20px;
+    padding: 15px;
+    width: 30%;
+    float: left;
+}
+.ag{
+    color: darkblue;
+}
+
+#navbar{
+    background: black;
+}
+
+body{
+    background-image: url("img/bacgr.jpg");
+}
+
+.links{
+    color:white;
+}
+
+a{
+    color: blue;
+}
+
+.mainest{
+    padding: 15px;
+    background: darkgrey;
+    border-radius: 5px;
+    opacity: 0.95;
 }

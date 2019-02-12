@@ -24,17 +24,17 @@
 
     <nav class="navbar mynav" role="navigation" id="navbar">
       <div class="container">
-        <a class="navbar-brand mynav" href="{% url 'home' %}">Task keeper</a>
+        <a class="navbar-brand mynav links" href="{% url 'home' %}"  class="">Task keeper</a>
 
         <ul class="nav navbar-nav navbar-right">
             {% if user.is_authenticated %}
-            <li><a href="{% url 'tasks:board' %}">Board</a></li>
-            <li><a href="{% url 'tasks:add_group' %}">Create new group</a></li>
-            <li><a href="{% url 'accounts:logout' %}">Log Out</a></li>
+            <li><a href="{% url 'tasks:board' %}" class="links">Board</a></li>
+            <li><a href="{% url 'tasks:add_group' %}" class="links">Create new group</a></li>
+            <li><a href="{% url 'accounts:logout' %}" class="links">Log Out</a></li>
             {% else %}
-            <li><a href="{% url 'home' %}">Home</a></li>
-            <li><a href="{% url 'accounts:login' %}">Log In</a></li>
-            <li><a href="{% url 'accounts:signup' %}">Sign Up</a></li>
+            <li><a href="{% url 'home' %}" class="links">Home</a></li>
+            <li><a href="{% url 'accounts:login' %}" class="links">Log In</a></li>
+            <li><a href="{% url 'accounts:signup' %}" class="links">Sign Up</a></li>
             {% endif %}
         </ul>
 
@@ -42,7 +42,7 @@
 
     </nav>
 
-    <div class="container">
+    <div class="container mainest">
 
       {% block content %}
 

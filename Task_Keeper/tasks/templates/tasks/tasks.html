@@ -2,10 +2,13 @@
 {% block content %}
     {% if groups %}
         {% for group in groups %}
-        <div class="col-lg-3 group">
+        <div class="group">
             <h1>{{ group.group_name }}</h1>
-            <a href="{% url 'tasks:add_task' group.id %}">Add new task</a>&nbsp | &nbsp
-            <a href="{% url 'tasks:delete_group' group.id %}">Delete group</a>
+            <a href="{% url 'tasks:add_task' group.id %}" class="ag">Add new task</a>&nbsp | &nbsp
+            <a href="{% url 'tasks:edit_group' group.id %}" class="ag">Edit</a>&nbsp | &nbsp
+            <a href="{% url 'tasks:delete_group' group.id %}" class="ag">Delete group</a>
+            <hr>
+            <br>
             {% for task in tasks %}
                 {% if task.progress == group.group_name and task.title != ''%}
                     <div class="jumbotron">

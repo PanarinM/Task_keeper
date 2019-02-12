@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-    <div class="jumbotron col-md-6">
+    <div class="jumbotron">
         <form action="{% url 'tasks:edit' task.id %}" method="POST">
             {% csrf_token %}
             <div class="form-group">

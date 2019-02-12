@@ -2,11 +2,11 @@
 
 {% block content %}
     <div class="jumbotron">
-        <form class="form" action="{% url 'tasks:add_group' %}" method="POST">
+        <form class="form" action="{% url 'tasks:edit_group' group.id %}" method="POST">
             {% csrf_token %}
             <div class="form-group">
                 <label for="title">Enter title of new group:</label><br>
-                <input type="text" name="group_name" id="group_name">
+                <input type="text" name="group_name" id="group_name" value="{{ group.group_name }}">
 {#                <label for="group_order">Point out the order number of your group:</label><br>#}
 {#                <input type="number" name="group_order" id="group_order">#}
             </div>

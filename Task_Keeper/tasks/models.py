@@ -1,20 +1,27 @@
 from django.db import models
-from datetime import datetime
-from django.conf import settings
+from django.contrib import auth
+
 
 from django.contrib.auth import get_user_model
 
 # Create your models here.
-User = get_user_model()
+User2 = get_user_model()
+
+
+class User(auth.models.User, auth.models.PermissionsMixin):
+
+    def __str__(self):
+        return '{}'.format(self.username)
 
 
 class Group(models.Model):
-    user = models.ForeignKey(User, related_name='columns',on_delete='CASCADE')
-    group_name = models.CharField(max_length=150, unique=True)
+    user = models.ForeignKey(User2, related_name='columns', on_delete='CASCADE')
+    group_name = models.CharField(max_length=150)
+    # group_order = models.IntegerField()
 
 
 class Task(models.Model):
-    user = models.ForeignKey(User, related_name='tasks', on_delete='CASCADE')
+    user = models.ForeignKey(User2, related_name='tasks', on_delete='CASCADE')
     title = models.CharField(max_length=150)
     description = models.TextField(max_length=300)
     progress = models.CharField(max_length=150)
@@ -23,4 +30,3 @@ class Task(models.Model):
 
     def __str__(self):
         return '{}: {}'.format(self.title, self.description)
-
